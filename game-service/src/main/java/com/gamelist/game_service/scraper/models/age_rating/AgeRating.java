@@ -25,15 +25,15 @@ public class AgeRating {
     @Id
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_id", nullable = false)
-    private Game game;
-
     @Column(name = "rating_cover_url")
     private String ratingCoverURL;
 
     @Column(columnDefinition = "TEXT")
     private String synopsis;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id", nullable = false)
+    private Game game;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
