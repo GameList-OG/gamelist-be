@@ -9,6 +9,7 @@ import com.gamelist.game_service.scraper.models.Theme;
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import com.gamelist.game_service.scraper.models.characters.Character;
+import com.gamelist.game_service.scraper.models.website.Website;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -111,6 +112,13 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
     private Set<Character> characters;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Website> websites;
 
     @Column(name = "created_at")
     private Instant createdAt;
