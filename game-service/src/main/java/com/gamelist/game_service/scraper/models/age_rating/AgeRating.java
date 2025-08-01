@@ -43,7 +43,9 @@ public class AgeRating {
     @JoinColumn(name = "category_id")
     private AgeRatingCategory category;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "age_rating_to_content_description",
             joinColumns = @JoinColumn(name = "age_rating_id"),
