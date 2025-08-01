@@ -9,6 +9,7 @@ import com.gamelist.game_service.scraper.models.Theme;
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import com.gamelist.game_service.scraper.models.characters.Character;
+import com.gamelist.game_service.scraper.models.release_date.ReleaseDate;
 import com.gamelist.game_service.scraper.models.website.Website;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -50,6 +51,12 @@ public class Game {
     private String versionTitle;
 
     private Instant firstReleaseDate;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<ReleaseDate> releaseDates;
 
     @OneToMany(
             mappedBy = "game",
