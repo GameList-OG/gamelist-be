@@ -26,11 +26,7 @@ public class ArtworkType {
     private String url;
     private String slug;
 
-    @OneToMany(
-            mappedBy = "artworkType",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "artworkType")
     private Set<Artwork> artworks;
 
     @Column(name = "created_at")
