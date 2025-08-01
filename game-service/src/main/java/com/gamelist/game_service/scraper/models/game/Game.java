@@ -3,6 +3,7 @@ package com.gamelist.game_service.scraper.models.game;
 // https://api-docs.igdb.com/#game
 
 import com.gamelist.game_service.scraper.models.Genre;
+import com.gamelist.game_service.scraper.models.Keyword;
 import com.gamelist.game_service.scraper.models.Theme;
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
@@ -78,6 +79,16 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "theme_id")
     )
     private Set<Theme> themes;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "game_keywords",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "keyword_id")
+    )
+    private Set<Keyword> keywords;
 
     @Column(name = "created_at")
     private Instant createdAt;
