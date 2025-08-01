@@ -3,6 +3,7 @@ package com.gamelist.game_service.scraper.models.game;
 // https://api-docs.igdb.com/#game
 
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
+import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -46,6 +47,9 @@ public class Game {
 
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AgeRating> ageRatings;
+
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Artwork> artworks;
 
     @Column(name = "created_at")
     private Instant createdAt;

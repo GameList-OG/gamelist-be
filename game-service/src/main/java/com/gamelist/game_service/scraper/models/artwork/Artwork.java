@@ -1,0 +1,45 @@
+package com.gamelist.game_service.scraper.models.artwork;
+
+import com.gamelist.game_service.scraper.models.game.Game;
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.UUID;
+
+// https://api-docs.igdb.com/#artwork
+
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@Entity
+@Table(name = "artworks")
+public class Artwork {
+
+    @Id
+    private int id;
+
+    private String url;
+    private int height;
+    private int width;
+    private boolean animated;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id")
+    private Game game;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artwork_type_id")
+    private ArtworkType artworkType;
+
+    @Column(name = "image_id")
+    private String imageId;
+
+    @Column(name = "alpha_channel")
+    private boolean alphaChannel;
+
+    private UUID checksum;
+}
