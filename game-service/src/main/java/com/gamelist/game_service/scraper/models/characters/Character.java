@@ -29,9 +29,11 @@ public class Character {
     private String slug;
     private String url;
     private String countryName;
-
+    
+    @CollectionTable(
+            name = "character_aliases",
+            joinColumns = @JoinColumn(name = "character_id"))
     @ElementCollection(fetch = FetchType.LAZY)
-    @CollectionTable(name = "character_aliases", joinColumns = @JoinColumn(name = "character_id"))
     @Column(name = "alias")
     private Set<String> aliases;
 
