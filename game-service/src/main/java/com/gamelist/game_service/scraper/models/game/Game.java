@@ -8,6 +8,7 @@ import com.gamelist.game_service.scraper.models.PlayerPerspective;
 import com.gamelist.game_service.scraper.models.Theme;
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
+import com.gamelist.game_service.scraper.models.characters.Character;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -100,6 +101,16 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "player_perspective_id")
     )
     private Set<PlayerPerspective> playerPerspectives;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "game_characters",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "character_id")
+    )
+    private Set<Character> characters;
 
     @Column(name = "created_at")
     private Instant createdAt;

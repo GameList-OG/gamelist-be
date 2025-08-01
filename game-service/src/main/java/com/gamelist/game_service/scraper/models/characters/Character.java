@@ -1,0 +1,63 @@
+package com.gamelist.game_service.scraper.models.characters;
+
+import com.gamelist.game_service.scraper.models.game.Game;
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
+
+// https://api-docs.igdb.com/#character
+
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@Entity
+@Table(name = "characters")
+public class Character {
+
+    @Id
+    private int id;
+
+    private String name;
+    private String description;
+    private String slug;
+    private String url;
+    private String countryName;
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "character_aliases", joinColumns = @JoinColumn(name = "character_id"))
+    @Column(name = "alias")
+    private Set<String> aliases;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "character_gender_id")
+    private CharacterGender characterGender;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "character_specie_id")
+    private CharacterSpecie characterSpecie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "character_mug_shot_id")
+    private CharacterMugShot characterMugShot;
+
+    @ManyToMany(
+            mappedBy = "characters",
+            fetch = FetchType.LAZY
+    )
+    private Set<Game> games;
+
+    @Column(name = "created_at")
+    private Instant createdAt;
+
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    private UUID checksum;
+}
