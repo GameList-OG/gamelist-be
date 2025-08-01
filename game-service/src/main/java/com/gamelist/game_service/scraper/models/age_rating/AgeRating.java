@@ -1,5 +1,6 @@
 package com.gamelist.game_service.scraper.models.age_rating;
 
+import com.gamelist.game_service.scraper.models.game.Game;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -23,6 +24,10 @@ public class AgeRating {
 
     @Id
     private int id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_id", nullable = false)
+    private Game game;
 
     @Column(name = "rating_cover_url")
     private String ratingCoverURL;
