@@ -136,6 +136,13 @@ public class Game {
     )
     private Set<CollectionMembership> collectionMemberships;
 
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<MultiplayerMode> multiplayerModes;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_game_id")
     private Game parentGame;

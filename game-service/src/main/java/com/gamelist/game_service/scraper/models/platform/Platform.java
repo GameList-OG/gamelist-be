@@ -1,6 +1,7 @@
 package com.gamelist.game_service.scraper.models.platform;
 
 import com.gamelist.game_service.scraper.models.game.Game;
+import com.gamelist.game_service.scraper.models.game.MultiplayerMode;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -58,6 +59,13 @@ public class Platform {
             orphanRemoval = true
     )
     private Set<PlatformWebsite> websites;
+
+    @OneToMany(
+            mappedBy = "platform",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<MultiplayerMode> multiplayerModes;
 
     @ManyToMany(
             mappedBy = "platforms",
