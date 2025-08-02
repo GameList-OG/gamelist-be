@@ -1,6 +1,5 @@
 package com.gamelist.game_service.scraper.models.characters;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -25,14 +24,10 @@ public class CharacterMugShot {
     private int id;
 
     private String url;
+    private String imageId;
     private int height;
     private int width;
     private boolean animated;
-
-    @Column(name = "image_id")
-    private String imageId;
-
-    @Column(name = "alpha_channel")
     private boolean alphaChannel;
 
     private UUID checksum;

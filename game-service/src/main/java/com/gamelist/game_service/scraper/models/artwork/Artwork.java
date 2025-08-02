@@ -23,9 +23,11 @@ public class Artwork {
     private int id;
 
     private String url;
+    private String imageId;
     private int height;
     private int width;
     private boolean animated;
+    private boolean alphaChannel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
@@ -34,12 +36,6 @@ public class Artwork {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artwork_type_id")
     private ArtworkType artworkType;
-
-    @Column(name = "image_id")
-    private String imageId;
-
-    @Column(name = "alpha_channel")
-    private boolean alphaChannel;
 
     private UUID checksum;
 }
