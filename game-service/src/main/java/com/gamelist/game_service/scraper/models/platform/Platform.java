@@ -1,6 +1,7 @@
 package com.gamelist.game_service.scraper.models.platform;
 
 import com.gamelist.game_service.scraper.models.game.Game;
+import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -63,6 +64,12 @@ public class Platform {
             fetch = FetchType.LAZY
     )
     private Set<Game> games;
+
+    @ManyToMany(
+            mappedBy = "platforms",
+            fetch = FetchType.LAZY
+    )
+    private Set<GameEngine> platforms;
 
     @Column(name = "created_at")
     private Instant createdAt;

@@ -1,7 +1,5 @@
 package com.gamelist.game_service.scraper.models.game;
 
-// https://api-docs.igdb.com/#game
-
 import com.gamelist.game_service.scraper.models.Genre;
 import com.gamelist.game_service.scraper.models.Keyword;
 import com.gamelist.game_service.scraper.models.PlayerPerspective;
@@ -10,6 +8,7 @@ import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import com.gamelist.game_service.scraper.models.characters.Character;
 import com.gamelist.game_service.scraper.models.company.Company;
+import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import com.gamelist.game_service.scraper.models.platform.Platform;
 import com.gamelist.game_service.scraper.models.release_date.ReleaseDate;
 import com.gamelist.game_service.scraper.models.website.Website;
@@ -22,6 +21,8 @@ import lombok.Setter;
 import java.time.Instant;
 import java.util.Set;
 import java.util.UUID;
+
+// https://api-docs.igdb.com/#game
 
 @Getter
 @Setter
@@ -47,12 +48,51 @@ public class Game {
     private String slug;
     private String storyline;
     private String summary;
+    private String versionTitle;
 
     private Integer hypes;
     private String url;
-    private String versionTitle;
-
     private Instant firstReleaseDate;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_ports",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_port_id")
+    )
+    private Set<Game> gamePorts;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_remakes",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_remake_id")
+    )
+    private Set<Game> remakes;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_remasters",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "remastered_game_id")
+    )
+    private Set<Game> remasters;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "similar_games",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "similar_game_id")
+    )
+    private Set<Game> similarGames;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "standalone_expansions",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "standalone_expansion_game_id")
+    )
+    private Set<Game> standaloneExpansions;
 
     @OneToMany(
             mappedBy = "game",
@@ -73,6 +113,13 @@ public class Game {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    private Set<AlternativeName> alternativeNames;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private Set<Artwork> artworks;
 
     @OneToMany(
@@ -81,6 +128,37 @@ public class Game {
             orphanRemoval = true
     )
     private Set<Website> websites;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_to_game_engines",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_engine_id")
+    )
+    private Set<GameEngine> gameEngines;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<GameVideo> gameVideos;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_game_id")
+    private Game parentGame;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "version_parent_game_id")
+    private Game versionParent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_status_id")
+    private GameStatus gameStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_type_id")
+    private GameType gameType;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -105,6 +183,14 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "company_id")
     )
     private Set<Company> published;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_involved_companies",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id")
+    )
+    private Set<Company> involvedCompanies;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
@@ -138,6 +224,17 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "keyword_id")
     )
     private Set<Keyword> keywords;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    )
+    @JoinTable(
+            name = "game_game_modes",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_mode_id")
+    )
+    private Set<GameMode> gameModes;
 
     @ManyToMany(
             fetch = FetchType.LAZY,

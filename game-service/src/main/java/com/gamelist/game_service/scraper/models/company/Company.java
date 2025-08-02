@@ -2,6 +2,7 @@ package com.gamelist.game_service.scraper.models.company;
 
 import com.gamelist.game_service.scraper.models.DateFormat;
 import com.gamelist.game_service.scraper.models.game.Game;
+import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -69,6 +70,16 @@ public class Company {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
     private CompanyStatus status;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "company_game_engines",
+            joinColumns = @JoinColumn(name = "game_engine_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id")
+    )
+    private Set<GameEngine> gameEngines;
 
     @Column(name = "created_at")
     private Instant createdAt;
