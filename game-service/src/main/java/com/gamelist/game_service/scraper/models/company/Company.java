@@ -1,7 +1,6 @@
 package com.gamelist.game_service.scraper.models.company;
 
 import com.gamelist.game_service.scraper.models.DateFormat;
-import com.gamelist.game_service.scraper.models.game.Game;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -65,12 +64,13 @@ public class Company {
     )
     private Set<CompanyWebsite> websites;
 
-    @ManyToMany(mappedBy = "developedBy")
-    private Set<Game> developed;
+    @OneToMany(
+            mappedBy = "company",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<InvolvedCompany> involvedCompanies;
 
-    @ManyToMany(mappedBy = "published")
-    private Set<Game> published;
-    
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})

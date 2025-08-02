@@ -7,7 +7,7 @@ import com.gamelist.game_service.scraper.models.Theme;
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import com.gamelist.game_service.scraper.models.characters.Character;
-import com.gamelist.game_service.scraper.models.company.Company;
+import com.gamelist.game_service.scraper.models.company.InvolvedCompany;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import com.gamelist.game_service.scraper.models.game_version.GameVersion;
 import com.gamelist.game_service.scraper.models.game_version.GameVersionFeatureValue;
@@ -120,6 +120,13 @@ public class Game {
     )
     private Set<LanguageSupport> languageSupports;
 
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<InvolvedCompany> involvedCompanies;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_game_id")
     private Game parentGame;
@@ -189,35 +196,11 @@ public class Game {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "game_developers",
-            joinColumns = @JoinColumn(name = "game_id"),
-            inverseJoinColumns = @JoinColumn(name = "company_id")
-    )
-    private Set<Company> developedBy;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "game_publishers",
-            joinColumns = @JoinColumn(name = "game_id"),
-            inverseJoinColumns = @JoinColumn(name = "company_id")
-    )
-    private Set<Company> published;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
             name = "game_to_game_engines",
             joinColumns = @JoinColumn(name = "game_id"),
             inverseJoinColumns = @JoinColumn(name = "game_engine_id")
     )
     private Set<GameEngine> gameEngines;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "game_involved_companies",
-            joinColumns = @JoinColumn(name = "game_id"),
-            inverseJoinColumns = @JoinColumn(name = "company_id")
-    )
-    private Set<Company> involvedCompanies;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
