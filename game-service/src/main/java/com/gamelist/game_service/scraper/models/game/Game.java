@@ -143,6 +143,13 @@ public class Game {
     )
     private Set<MultiplayerMode> multiplayerModes;
 
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Screenshot> screenshots;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_game_id")
     private Game parentGame;
