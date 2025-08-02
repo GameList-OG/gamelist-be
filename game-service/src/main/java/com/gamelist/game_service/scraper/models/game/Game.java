@@ -11,6 +11,7 @@ import com.gamelist.game_service.scraper.models.company.Company;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import com.gamelist.game_service.scraper.models.game_version.GameVersion;
 import com.gamelist.game_service.scraper.models.game_version.GameVersionFeatureValue;
+import com.gamelist.game_service.scraper.models.langauge.LanguageSupport;
 import com.gamelist.game_service.scraper.models.platform.Platform;
 import com.gamelist.game_service.scraper.models.release_date.ReleaseDate;
 import com.gamelist.game_service.scraper.models.website.Website;
@@ -111,6 +112,13 @@ public class Game {
             orphanRemoval = true
     )
     private Set<GameVersion> versions;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<LanguageSupport> languageSupports;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_game_id")
