@@ -36,11 +36,11 @@ public class AgeRating {
     private Game game;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id")
+    @JoinColumn(name = "age_rating_organization_id")
     private AgeRatingOrganization organization;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "age_rating_category_id")
     private AgeRatingCategory category;
 
     @ManyToMany(

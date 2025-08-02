@@ -25,7 +25,7 @@ public class AgeRatingCategory {
     private String rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id")
+    @JoinColumn(name = "age_rating_organization_id")
     private AgeRatingOrganization organization;
 
     @Column(name = "created_at")

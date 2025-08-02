@@ -54,6 +54,64 @@ public class Game {
     private String url;
     private Instant firstReleaseDate;
 
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<ReleaseDate> releaseDates;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<AgeRating> ageRatings;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<AlternativeName> alternativeNames;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Artwork> artworks;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Website> websites;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<GameVideo> gameVideos;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_game_id")
+    private Game parentGame;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "version_parent_game_id")
+    private Game versionParent;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_status_id")
+    private GameStatus gameStatus;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "game_type_id")
+    private GameType gameType;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "game_ports",
@@ -94,72 +152,6 @@ public class Game {
     )
     private Set<Game> standaloneExpansions;
 
-    @OneToMany(
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<ReleaseDate> releaseDates;
-
-    @OneToMany(
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<AgeRating> ageRatings;
-
-    @OneToMany(
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<AlternativeName> alternativeNames;
-
-    @OneToMany(
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<Artwork> artworks;
-
-    @OneToMany(
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<Website> websites;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "game_to_game_engines",
-            joinColumns = @JoinColumn(name = "game_id"),
-            inverseJoinColumns = @JoinColumn(name = "game_engine_id")
-    )
-    private Set<GameEngine> gameEngines;
-
-    @OneToMany(
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<GameVideo> gameVideos;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_game_id")
-    private Game parentGame;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "version_parent_game_id")
-    private Game versionParent;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_status_id")
-    private GameStatus gameStatus;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "game_type_id")
-    private GameType gameType;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "game_platforms",
@@ -183,6 +175,14 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "company_id")
     )
     private Set<Company> published;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_to_game_engines",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_engine_id")
+    )
+    private Set<GameEngine> gameEngines;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(

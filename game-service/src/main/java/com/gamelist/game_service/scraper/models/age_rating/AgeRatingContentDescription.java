@@ -25,11 +25,11 @@ public class AgeRatingContentDescription {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "organization_id")
+    @JoinColumn(name = "age_rating_organization_id")
     private AgeRatingOrganization organization;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "description_type_id")
+    @JoinColumn(name = "age_rating_content_description_type_id")
     private AgeRatingContentDescriptionType descriptionType;
 
     @Column(name = "created_at")

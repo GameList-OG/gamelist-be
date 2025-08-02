@@ -34,19 +34,6 @@ public class Company {
     private Instant changeDate;
     private Instant startDate;
 
-    @OneToMany(
-            mappedBy = "company",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<CompanyWebsite> websites;
-
-    @ManyToMany(mappedBy = "developedBy")
-    private Set<Game> developed;
-
-    @ManyToMany(mappedBy = "published")
-    private Set<Game> published;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "start_date_format_id")
     private DateFormat startDateFormat;
@@ -71,6 +58,19 @@ public class Company {
     @JoinColumn(name = "status_id")
     private CompanyStatus status;
 
+    @OneToMany(
+            mappedBy = "company",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<CompanyWebsite> websites;
+
+    @ManyToMany(mappedBy = "developedBy")
+    private Set<Game> developed;
+
+    @ManyToMany(mappedBy = "published")
+    private Set<Game> published;
+    
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
