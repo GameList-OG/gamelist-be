@@ -10,6 +10,7 @@ import com.gamelist.game_service.scraper.models.characters.Character;
 import com.gamelist.game_service.scraper.models.collection.Collection;
 import com.gamelist.game_service.scraper.models.collection.CollectionMembership;
 import com.gamelist.game_service.scraper.models.company.InvolvedCompany;
+import com.gamelist.game_service.scraper.models.external_game.ExternalGame;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import com.gamelist.game_service.scraper.models.game_version.GameVersion;
 import com.gamelist.game_service.scraper.models.game_version.GameVersionFeatureValue;
@@ -142,6 +143,13 @@ public class Game {
             orphanRemoval = true
     )
     private Set<MultiplayerMode> multiplayerModes;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<ExternalGame> externalGames;
 
     @OneToMany(
             mappedBy = "game",

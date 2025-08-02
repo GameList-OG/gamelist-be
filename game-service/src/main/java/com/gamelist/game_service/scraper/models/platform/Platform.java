@@ -1,5 +1,6 @@
 package com.gamelist.game_service.scraper.models.platform;
 
+import com.gamelist.game_service.scraper.models.external_game.ExternalGame;
 import com.gamelist.game_service.scraper.models.game.Game;
 import com.gamelist.game_service.scraper.models.game.MultiplayerMode;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
@@ -66,6 +67,13 @@ public class Platform {
             orphanRemoval = true
     )
     private Set<MultiplayerMode> multiplayerModes;
+
+    @OneToMany(
+            mappedBy = "platform",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<ExternalGame> externalGames;
 
     @ManyToMany(
             mappedBy = "platforms",
