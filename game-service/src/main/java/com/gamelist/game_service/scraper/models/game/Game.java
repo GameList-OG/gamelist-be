@@ -7,6 +7,8 @@ import com.gamelist.game_service.scraper.models.Theme;
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import com.gamelist.game_service.scraper.models.characters.Character;
+import com.gamelist.game_service.scraper.models.collection.Collection;
+import com.gamelist.game_service.scraper.models.collection.CollectionMembership;
 import com.gamelist.game_service.scraper.models.company.InvolvedCompany;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import com.gamelist.game_service.scraper.models.game_version.GameVersion;
@@ -127,6 +129,13 @@ public class Game {
     )
     private Set<InvolvedCompany> involvedCompanies;
 
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<CollectionMembership> collectionMemberships;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_game_id")
     private Game parentGame;
@@ -234,6 +243,17 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "keyword_id")
     )
     private Set<Keyword> keywords;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    )
+    @JoinTable(
+            name = "game_collections",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "collection_id")
+    )
+    private Set<Collection> collections;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
