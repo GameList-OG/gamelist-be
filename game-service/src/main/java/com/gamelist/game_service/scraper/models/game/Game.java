@@ -10,6 +10,7 @@ import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import com.gamelist.game_service.scraper.models.characters.Character;
 import com.gamelist.game_service.scraper.models.company.Company;
+import com.gamelist.game_service.scraper.models.platform.Platform;
 import com.gamelist.game_service.scraper.models.release_date.ReleaseDate;
 import com.gamelist.game_service.scraper.models.website.Website;
 import jakarta.persistence.*;
@@ -80,6 +81,14 @@ public class Game {
             orphanRemoval = true
     )
     private Set<Website> websites;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_platforms",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "platform_id")
+    )
+    private Set<Platform> platforms;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
