@@ -36,7 +36,11 @@ public class Event {
     @JoinColumn(name = "event_logo_id")
     private EventLogo eventLogo;
 
-    @OneToMany(mappedBy = "event")
+    @OneToMany(
+            mappedBy = "event",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private Set<EventNetwork> eventNetworks;
 
     @Column(name = "created_at")

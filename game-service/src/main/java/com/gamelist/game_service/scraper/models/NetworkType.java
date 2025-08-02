@@ -26,8 +26,7 @@ public class NetworkType {
 
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_network_id")
+    @OneToMany(mappedBy = "networkType", fetch = FetchType.LAZY)
     private Set<EventNetwork> events;
 
     @Column(name = "created_at")
