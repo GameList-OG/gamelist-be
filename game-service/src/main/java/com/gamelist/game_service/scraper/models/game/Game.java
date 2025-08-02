@@ -9,6 +9,7 @@ import com.gamelist.game_service.scraper.models.Theme;
 import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
 import com.gamelist.game_service.scraper.models.artwork.Artwork;
 import com.gamelist.game_service.scraper.models.characters.Character;
+import com.gamelist.game_service.scraper.models.company.Company;
 import com.gamelist.game_service.scraper.models.release_date.ReleaseDate;
 import com.gamelist.game_service.scraper.models.website.Website;
 import jakarta.persistence.*;
@@ -55,24 +56,51 @@ public class Game {
     @OneToMany(
             mappedBy = "game",
             cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            orphanRemoval = true
+    )
     private Set<ReleaseDate> releaseDates;
 
     @OneToMany(
             mappedBy = "game",
             cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            orphanRemoval = true
+    )
     private Set<AgeRating> ageRatings;
 
     @OneToMany(
             mappedBy = "game",
             cascade = CascadeType.ALL,
-            orphanRemoval = true)
+            orphanRemoval = true
+    )
     private Set<Artwork> artworks;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<Website> websites;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_developers",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id")
+    )
+    private Set<Company> developedBy;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_publishers",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id")
+    )
+    private Set<Company> published;
 
     @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    )
     @JoinTable(
             name = "game_genres",
             joinColumns = @JoinColumn(name = "game_id"),
@@ -82,7 +110,8 @@ public class Game {
 
     @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    )
     @JoinTable(
             name = "game_themes",
             joinColumns = @JoinColumn(name = "game_id"),
@@ -92,7 +121,8 @@ public class Game {
 
     @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    )
     @JoinTable(
             name = "game_keywords",
             joinColumns = @JoinColumn(name = "game_id"),
@@ -102,7 +132,8 @@ public class Game {
 
     @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE}
+    )
     @JoinTable(
             name = "game_player_perspectives",
             joinColumns = @JoinColumn(name = "game_id"),
@@ -119,13 +150,6 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
     private Set<Character> characters;
-
-    @OneToMany(
-            mappedBy = "game",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private Set<Website> websites;
 
     @Column(name = "created_at")
     private Instant createdAt;

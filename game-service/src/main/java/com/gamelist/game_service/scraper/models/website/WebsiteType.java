@@ -1,5 +1,6 @@
 package com.gamelist.game_service.scraper.models.website;
 
+import com.gamelist.game_service.scraper.models.company.CompanyWebsite;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,8 +26,11 @@ public class WebsiteType {
 
     private String type;
 
-    @OneToMany(mappedBy = "websiteType")
+    @OneToMany(mappedBy = "websiteType", fetch = FetchType.LAZY)
     private Set<Website> websites;
+
+    @OneToMany(mappedBy = "websiteType", fetch = FetchType.LAZY)
+    private Set<CompanyWebsite> companyWebsites;
 
     @Column(name = "created_at")
     private Instant createdAt;
