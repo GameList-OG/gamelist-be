@@ -16,6 +16,7 @@ import com.gamelist.game_service.scraper.models.game_version.GameVersion;
 import com.gamelist.game_service.scraper.models.game_version.GameVersionFeatureValue;
 import com.gamelist.game_service.scraper.models.langauge.LanguageSupport;
 import com.gamelist.game_service.scraper.models.platform.Platform;
+import com.gamelist.game_service.scraper.models.popularity.PopularityPrimitive;
 import com.gamelist.game_service.scraper.models.release_date.ReleaseDate;
 import com.gamelist.game_service.scraper.models.website.Website;
 import jakarta.persistence.*;
@@ -164,6 +165,13 @@ public class Game {
             orphanRemoval = true
     )
     private Set<GameLocalization> gameLocalizations;
+
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<PopularityPrimitive> popularityPrimitives;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cover_id")
