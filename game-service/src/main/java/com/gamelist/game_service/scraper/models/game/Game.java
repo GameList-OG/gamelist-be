@@ -158,6 +158,21 @@ public class Game {
     )
     private Set<Screenshot> screenshots;
 
+    @OneToMany(
+            mappedBy = "game",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private Set<GameLocalization> gameLocalizations;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cover_id")
+    private Cover cover;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "primary_franchise_id")
+    private Franchise primaryFranchise;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_game_id")
     private Game parentGame;
@@ -308,6 +323,14 @@ public class Game {
             inverseJoinColumns = @JoinColumn(name = "character_id")
     )
     private Set<Character> characters;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "game_franchises",
+            joinColumns = @JoinColumn(name = "game_id"),
+            inverseJoinColumns = @JoinColumn(name = "franchise_id")
+    )
+    private Set<Franchise> allFranchises;
 
     @Column(name = "created_at")
     private Instant createdAt;
