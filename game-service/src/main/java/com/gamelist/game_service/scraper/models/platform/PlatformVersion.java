@@ -1,14 +1,13 @@
 package com.gamelist.game_service.scraper.models.platform;
 
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#platform-version
 
@@ -51,18 +50,10 @@ public class PlatformVersion {
     @JoinColumn(name = "platform_logo_id")
     private PlatformLogo platformLogo;
 
-    @OneToMany(
-            mappedBy = "platformVersion",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "platformVersion", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PlatformVersionCompany> platformVersionCompanies;
 
-    @OneToMany(
-            mappedBy = "platformVersion",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "platformVersion", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PlatformVersionReleaseDate> platformVersionReleaseDates;
 
     @Column(name = "created_at")

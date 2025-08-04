@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum GameVersionFeatureValueType {
-
     NOT_INCLUDED(0),
     INCLUDED(1),
     PRE_ORDER_ONLY(2);

@@ -2,15 +2,14 @@ package com.gamelist.game_service.scraper.models.age_rating;
 
 import com.gamelist.game_service.scraper.models.game.Game;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 // https://api-docs.igdb.com/#age-rating
 
@@ -49,8 +48,7 @@ public class AgeRating {
     @JoinTable(
             name = "age_rating_to_content_description",
             joinColumns = @JoinColumn(name = "age_rating_id"),
-            inverseJoinColumns = @JoinColumn(name = "content_description_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "content_description_id"))
     private Set<AgeRatingContentDescription> ratingContentDescriptions = new HashSet<>();
 
     @Column(name = "created_at")

@@ -1,13 +1,12 @@
 package com.gamelist.game_service.scraper.models.game;
 
 import jakarta.persistence.*;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#cover
 
@@ -34,6 +33,6 @@ public class Cover {
 
     @OneToMany(mappedBy = "cover", fetch = FetchType.LAZY)
     private Set<GameLocalization> gameLocalizations;
-    
+
     private UUID checksum;
 }

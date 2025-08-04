@@ -3,14 +3,13 @@ package com.gamelist.game_service.scraper.models.website;
 import com.gamelist.game_service.scraper.models.company.CompanyWebsite;
 import com.gamelist.game_service.scraper.models.platform.PlatformWebsite;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#website-type
 

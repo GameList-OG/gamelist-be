@@ -1,13 +1,12 @@
 package com.gamelist.game_service.scraper.models.game_version;
 
 import jakarta.persistence.*;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#game-version-feature
 
@@ -30,11 +29,7 @@ public class GameVersionFeature {
     @Column(name = "game_version_feature_category")
     private GameVersionFeatureType category;
 
-    @OneToMany(
-            mappedBy = "gameVersionFeature",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "gameVersionFeature", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<GameVersionFeatureValue> values;
 
     @ManyToMany(mappedBy = "gameVersionFeatures")

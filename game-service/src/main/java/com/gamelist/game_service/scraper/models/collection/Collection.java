@@ -2,14 +2,13 @@ package com.gamelist.game_service.scraper.models.collection;
 
 import com.gamelist.game_service.scraper.models.game.Game;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#collection
 
@@ -32,11 +31,7 @@ public class Collection {
     @JoinColumn(name = "collection_type_id")
     private CollectionType collectionType;
 
-    @OneToMany(
-            mappedBy = "collection",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CollectionMembership> collectionMemberships;
 
     @OneToMany(mappedBy = "allowedChildType")
@@ -45,24 +40,13 @@ public class Collection {
     @OneToMany(mappedBy = "allowedParentType")
     private Set<CollectionRelationType> parentCollectionRelationTypes;
 
-    @OneToMany(
-            mappedBy = "childCollection",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "childCollection", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CollectionRelation> childCollectionRelations;
 
-    @OneToMany(
-            mappedBy = "parentCollection",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "parentCollection", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CollectionRelation> parentCollectionRelations;
 
-    @ManyToMany(
-            mappedBy = "collections",
-            fetch = FetchType.LAZY
-    )
+    @ManyToMany(mappedBy = "collections", fetch = FetchType.LAZY)
     private Set<Game> games;
 
     @Column(name = "created_at")

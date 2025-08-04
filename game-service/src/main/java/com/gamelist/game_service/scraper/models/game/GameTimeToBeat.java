@@ -1,13 +1,12 @@
 package com.gamelist.game_service.scraper.models.game;
 
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#game-time-to-beat
 

@@ -2,12 +2,11 @@ package com.gamelist.game_service.scraper.models.game_version;
 
 import com.gamelist.game_service.scraper.models.game.Game;
 import jakarta.persistence.*;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#game-version-feature-value
 

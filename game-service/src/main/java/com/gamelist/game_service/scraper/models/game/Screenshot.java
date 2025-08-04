@@ -1,12 +1,11 @@
 package com.gamelist.game_service.scraper.models.game;
 
 import jakarta.persistence.*;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#screenshot
 
@@ -27,7 +26,7 @@ public class Screenshot {
     private int width;
     private boolean animated;
     private boolean alphaChannel;
-    
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
     private Game game;

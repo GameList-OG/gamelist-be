@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum GameVersionFeatureType {
-
     BOOLEAN(0),
     DESCRIPTION(1);
 

@@ -5,14 +5,13 @@ import com.gamelist.game_service.scraper.models.game.Game;
 import com.gamelist.game_service.scraper.models.game.MultiplayerMode;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#platform
 
@@ -47,44 +46,22 @@ public class Platform {
     @JoinColumn(name = "platform_type_id")
     private PlatformType platformType;
 
-    @OneToMany(
-            mappedBy = "platform",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "platform", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PlatformVersion> versions;
 
-    @OneToMany(
-            mappedBy = "platform",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "platform", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PlatformWebsite> websites;
 
-    @OneToMany(
-            mappedBy = "platform",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "platform", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<MultiplayerMode> multiplayerModes;
 
-    @OneToMany(
-            mappedBy = "platform",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "platform", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ExternalGame> externalGames;
 
-    @ManyToMany(
-            mappedBy = "platforms",
-            fetch = FetchType.LAZY
-    )
+    @ManyToMany(mappedBy = "platforms", fetch = FetchType.LAZY)
     private Set<Game> games;
 
-    @ManyToMany(
-            mappedBy = "platforms",
-            fetch = FetchType.LAZY
-    )
+    @ManyToMany(mappedBy = "platforms", fetch = FetchType.LAZY)
     private Set<GameEngine> platforms;
 
     @Column(name = "created_at")

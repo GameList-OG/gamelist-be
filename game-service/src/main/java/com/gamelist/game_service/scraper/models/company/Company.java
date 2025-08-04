@@ -3,14 +3,13 @@ package com.gamelist.game_service.scraper.models.company;
 import com.gamelist.game_service.scraper.models.DateFormat;
 import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#company
 
@@ -57,18 +56,10 @@ public class Company {
     @JoinColumn(name = "status_id")
     private CompanyStatus status;
 
-    @OneToMany(
-            mappedBy = "company",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CompanyWebsite> websites;
 
-    @OneToMany(
-            mappedBy = "company",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<InvolvedCompany> involvedCompanies;
 
     @ManyToMany(
@@ -77,8 +68,7 @@ public class Company {
     @JoinTable(
             name = "company_game_engines",
             joinColumns = @JoinColumn(name = "game_engine_id"),
-            inverseJoinColumns = @JoinColumn(name = "company_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "company_id"))
     private Set<GameEngine> gameEngines;
 
     @Column(name = "created_at")

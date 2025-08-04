@@ -3,12 +3,11 @@ package com.gamelist.game_service.scraper.models.platform;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#platform-family
 

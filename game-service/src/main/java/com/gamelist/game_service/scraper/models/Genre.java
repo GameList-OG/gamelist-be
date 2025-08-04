@@ -2,14 +2,13 @@ package com.gamelist.game_service.scraper.models;
 
 import com.gamelist.game_service.scraper.models.game.Game;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#genre
 
@@ -28,10 +27,7 @@ public class Genre {
     private String slug;
     private String url;
 
-    @ManyToMany(
-            mappedBy = "genres",
-            fetch = FetchType.LAZY
-    )
+    @ManyToMany(mappedBy = "genres", fetch = FetchType.LAZY)
     private Set<Game> games;
 
     @Column(name = "created_at")

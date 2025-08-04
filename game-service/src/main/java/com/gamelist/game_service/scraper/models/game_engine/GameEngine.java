@@ -4,14 +4,13 @@ import com.gamelist.game_service.scraper.models.company.Company;
 import com.gamelist.game_service.scraper.models.game.Game;
 import com.gamelist.game_service.scraper.models.platform.Platform;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#game-engine
 
@@ -38,10 +37,7 @@ public class GameEngine {
     @ManyToMany(mappedBy = "gameEngines")
     private Set<Game> games;
 
-    @ManyToMany(
-            mappedBy = "gameEngines",
-            fetch = FetchType.LAZY
-    )
+    @ManyToMany(mappedBy = "gameEngines", fetch = FetchType.LAZY)
     private Set<Company> companies;
 
     @ManyToMany(
@@ -50,8 +46,7 @@ public class GameEngine {
     @JoinTable(
             name = "game_engines_platforms",
             joinColumns = @JoinColumn(name = "game_engine_id"),
-            inverseJoinColumns = @JoinColumn(name = "platform_id")
-    )
+            inverseJoinColumns = @JoinColumn(name = "platform_id"))
     private Set<Platform> platforms;
 
     @Column(name = "created_at")
