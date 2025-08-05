@@ -1,6 +1,6 @@
-package com.gamelist.seeding.repository.game_list;
+package com.gamelist.domain.repository;
 
-import com.gamelist.seeding.entity.game_list.User;
+import com.gamelist.domain.models.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface UserMongoRepository extends MongoRepository<User, String> {

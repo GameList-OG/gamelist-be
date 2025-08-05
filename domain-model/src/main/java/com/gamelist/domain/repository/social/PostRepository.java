@@ -1,10 +1,11 @@
-package com.gamelist.seeding.repository.game_list;
+package com.gamelist.domain.repository.social;
 
-import com.gamelist.seeding.entity.game_list.Post;
-import java.util.Optional;
+import com.gamelist.domain.models.social.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("SELECT p FROM posts p LEFT JOIN FETCH p.likes l WHERE p.id = :postId")

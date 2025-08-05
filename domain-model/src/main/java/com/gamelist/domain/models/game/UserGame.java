@@ -1,9 +1,6 @@
-package com.gamelist.seeding.entity.game_list;
+package com.gamelist.domain.models.game;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.gamelist.domain.models.game.Game;
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,19 +8,22 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @SuperBuilder
 @NoArgsConstructor
 @Entity(name = "user_games")
 public class UserGame {
+    
     @Id
     @GeneratedValue
     private Long id;
 
     @Column(name = "game_status")
     @Enumerated(EnumType.STRING)
-    private GameStatus gameStatus;
+    private UserGameStatus gameStatus;
 
     @Column(name = "start_date")
     private LocalDateTime startDate;
@@ -51,7 +51,6 @@ public class UserGame {
     private String userId;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonBackReference
     @JoinColumn(name = "game_id", referencedColumnName = "id")
     private Game game;
 }

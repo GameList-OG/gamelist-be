@@ -1,6 +1,6 @@
-package com.gamelist.seeding.entity.game_list;
+package com.gamelist.domain.models.game;
 
-public enum GameStatus {
+public enum UserGameStatus {
     Playing,
     Completed,
     Paused,

@@ -1,8 +1,9 @@
-package com.gamelist.seeding.repository.game_list;
+package com.gamelist.domain.repository.social;
 
-import com.gamelist.seeding.entity.game_list.Comment;
-import java.util.List;
+import com.gamelist.domain.models.social.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findAllByInteractiveEntityId(Long interactiveEntityId);

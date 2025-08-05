@@ -1,5 +1,7 @@
-package com.gamelist.seeding.entity.game_list;
+package com.gamelist.domain.models.social;
 
+import com.gamelist.domain.models.game.UserGame;
+import com.gamelist.domain.models.game.UserGameStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +18,7 @@ public class StatusUpdate extends InteractiveEntity {
 
     @Column(name = "game_status")
     @Enumerated(EnumType.STRING)
-    private GameStatus gameStatus;
+    private UserGameStatus gameStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_game_id", referencedColumnName = "id")

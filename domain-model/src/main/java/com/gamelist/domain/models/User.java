@@ -1,11 +1,12 @@
-package com.gamelist.seeding.entity.game_list;
+package com.gamelist.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Id;
-import java.time.LocalDateTime;
 import lombok.*;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter

@@ -1,4 +1,4 @@
-package com.gamelist.seeding.entity.game_list;
+package com.gamelist.domain.models;
 
 public enum Role {
     ROLE_USER,

@@ -1,4 +1,4 @@
-package com.gamelist.seeding.entity.game_list;
+package com.gamelist.domain.models.social;
 
 import jakarta.persistence.*;
 import lombok.Getter;
