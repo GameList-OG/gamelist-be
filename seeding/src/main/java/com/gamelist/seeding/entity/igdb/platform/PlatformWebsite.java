@@ -1,0 +1,45 @@
+package com.gamelist.seeding.entity.igdb.platform;
+
+import com.gamelist.game_service.scraper.models.platform.Platform;
+import com.gamelist.game_service.scraper.models.website.WebsiteType;
+import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.Instant;
+import java.util.UUID;
+
+// https://api-docs.igdb.com/#platform-website
+
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@Entity
+@Table(name = "platform_websites")
+public class PlatformWebsite {
+
+    @Id
+    private int id;
+
+    private String url;
+    private boolean trusted;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "website_type_id")
+    private WebsiteType websiteType;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "platform_id")
+    private Platform platform;
+
+    @Column(name = "created_at")
+    private Instant createdAt;
+
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    private UUID checksum;
+}

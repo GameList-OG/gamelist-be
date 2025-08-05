@@ -3,7 +3,11 @@ package com.gamelist.seeding;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gamelist.seeding.entity.*;
+import com.gamelist.seeding.entity.game_list.*;
+import com.gamelist.seeding.old.Game;
+import com.gamelist.seeding.old.Genre;
+import com.gamelist.seeding.old.Platform;
+import com.gamelist.seeding.old.Tag;
 import com.gamelist.seeding.repository.*;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -111,7 +115,6 @@ public class SeedService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
     }
 
@@ -133,10 +136,14 @@ public class SeedService {
                     game.setName(gameNode.get("name").asText());
                     game.setDescription(gameNode.get("summary").asText());
                     game.setImageURL("https:" + gameNode.get("cover").asText());
-                    game.setReleaseDate(LocalDateTime.ofInstant(Instant.ofEpochSecond(gameNode.get("first_release_date").asLong()), ZoneId.systemDefault()));
+                    game.setReleaseDate(LocalDateTime.ofInstant(
+                            Instant.ofEpochSecond(
+                                    gameNode.get("first_release_date").asLong()),
+                            ZoneId.systemDefault()));
                     game.setAvgScore(Math.round(gameNode.get("total_rating").asDouble() * 10.0) / 10.0);
                     game.setTotalRating(gameNode.get("total_rating_count").asInt());
-                    game.setBannerURL("https:" + gameNode.get("screenshots").get(0).asText());
+                    game.setBannerURL(
+                            "https:" + gameNode.get("screenshots").get(0).asText());
 
                     List<Genre> genres = new ArrayList<>();
                     JsonNode genresNode = gameNode.get("genres");
@@ -196,7 +203,8 @@ public class SeedService {
                 for (int j = 1; j <= 5; j++) {
                     try {
                         GameJournal gameJournal = new GameJournal();
-                        gameJournal.setContent("This is the body of game journal " + j + " by user " + user.getId() + ".");
+                        gameJournal.setContent(
+                                "This is the body of game journal " + j + " by user " + user.getId() + ".");
                         gameJournal.setUserId(user.getId());
 
                         gameJournals.add(gameJournal);
@@ -251,7 +259,8 @@ public class SeedService {
                         userGame.setGameStatus(GameStatus.values()[j % 3]);
                         userGame.setIsPrivate(false);
                         userGame.setUserId(user.getId());
-                        userGame.setGame(gameRepository.findAllGamesOrderedById().get(j - 1));
+                        userGame.setGame(
+                                gameRepository.findAllGamesOrderedById().get(j - 1));
                         userGame.setRating(5);
                         userGame.setGameNote("This is a game review for game " + j + " by user " + user.getId() + ".");
                         userGames.add(userGame);

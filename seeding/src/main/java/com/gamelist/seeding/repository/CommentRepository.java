@@ -1,6 +1,6 @@
 package com.gamelist.seeding.repository;
 
-import com.gamelist.seeding.entity.Comment;
+import com.gamelist.seeding.entity.game_list.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

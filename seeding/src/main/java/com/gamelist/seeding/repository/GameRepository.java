@@ -1,6 +1,6 @@
 package com.gamelist.seeding.repository;
 
-import com.gamelist.seeding.entity.Game;
+import com.gamelist.seeding.old.Game;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
