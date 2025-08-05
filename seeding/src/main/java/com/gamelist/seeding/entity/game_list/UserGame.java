@@ -1,7 +1,7 @@
 package com.gamelist.seeding.entity.game_list;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.gamelist.seeding.entity.igdb.game.Game;
+import com.gamelist.domain.models.game.Game;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import lombok.Getter;

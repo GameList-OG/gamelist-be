@@ -26,6 +26,7 @@
         <module>user-service</module>
         <module>proto</module>
         <module>seeding</module>
+        <module>domain-model</module>
     </modules>
 
     <properties>
