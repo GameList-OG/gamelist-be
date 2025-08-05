@@ -1,6 +1,7 @@
 package com.gamelist.domain.models.game;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,15 +9,13 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @SuperBuilder
 @NoArgsConstructor
 @Entity(name = "user_games")
 public class UserGame {
-    
+
     @Id
     @GeneratedValue
     private Long id;
