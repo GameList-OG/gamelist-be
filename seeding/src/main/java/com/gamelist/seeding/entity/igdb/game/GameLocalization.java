@@ -1,16 +1,13 @@
 package com.gamelist.seeding.entity.igdb.game;
 
-import com.gamelist.game_service.scraper.models.Region;
-import com.gamelist.game_service.scraper.models.game.Cover;
-import com.gamelist.game_service.scraper.models.game.Game;
+import com.gamelist.seeding.entity.igdb.Region;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.UUID;
 
 @Getter
 @Setter

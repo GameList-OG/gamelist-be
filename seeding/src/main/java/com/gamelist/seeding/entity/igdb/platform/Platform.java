@@ -1,20 +1,17 @@
 package com.gamelist.seeding.entity.igdb.platform;
 
-import com.gamelist.game_service.scraper.models.external_game.ExternalGame;
-import com.gamelist.game_service.scraper.models.game.Game;
-import com.gamelist.game_service.scraper.models.game.MultiplayerMode;
-import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
-import com.gamelist.game_service.scraper.models.platform.PlatformType;
-import com.gamelist.game_service.scraper.models.platform.PlatformVersion;
+import com.gamelist.seeding.entity.igdb.external_game.ExternalGame;
+import com.gamelist.seeding.entity.igdb.game.Game;
+import com.gamelist.seeding.entity.igdb.game.MultiplayerMode;
+import com.gamelist.seeding.entity.igdb.game_engine.GameEngine;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#platform
 

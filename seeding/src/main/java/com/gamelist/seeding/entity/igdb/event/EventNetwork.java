@@ -1,15 +1,13 @@
 package com.gamelist.seeding.entity.igdb.event;
 
-import com.gamelist.game_service.scraper.models.NetworkType;
-import com.gamelist.game_service.scraper.models.event.Event;
+import com.gamelist.seeding.entity.igdb.NetworkType;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#event_network
 

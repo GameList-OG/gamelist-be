@@ -1,13 +1,12 @@
 package com.gamelist.seeding.entity.igdb.game_version;
 
 import jakarta.persistence.*;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#game-version-feature
 

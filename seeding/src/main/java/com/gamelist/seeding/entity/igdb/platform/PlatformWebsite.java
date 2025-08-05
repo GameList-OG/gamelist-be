@@ -1,15 +1,13 @@
 package com.gamelist.seeding.entity.igdb.platform;
 
-import com.gamelist.game_service.scraper.models.platform.Platform;
-import com.gamelist.game_service.scraper.models.website.WebsiteType;
+import com.gamelist.seeding.entity.igdb.website.WebsiteType;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#platform-website
 

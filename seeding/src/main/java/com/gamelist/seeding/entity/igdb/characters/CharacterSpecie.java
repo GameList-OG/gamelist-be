@@ -1,15 +1,13 @@
 package com.gamelist.seeding.entity.igdb.characters;
 
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.lang.Character;
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#character-specie
 

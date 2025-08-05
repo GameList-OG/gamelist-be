@@ -1,34 +1,32 @@
 package com.gamelist.seeding.entity.igdb.game;
 
-import com.gamelist.game_service.scraper.models.Genre;
-import com.gamelist.game_service.scraper.models.Keyword;
-import com.gamelist.game_service.scraper.models.PlayerPerspective;
-import com.gamelist.game_service.scraper.models.Theme;
-import com.gamelist.game_service.scraper.models.age_rating.AgeRating;
-import com.gamelist.game_service.scraper.models.artwork.Artwork;
-import com.gamelist.game_service.scraper.models.characters.Character;
-import com.gamelist.game_service.scraper.models.collection.Collection;
-import com.gamelist.game_service.scraper.models.collection.CollectionMembership;
-import com.gamelist.game_service.scraper.models.company.InvolvedCompany;
-import com.gamelist.game_service.scraper.models.external_game.ExternalGame;
-import com.gamelist.game_service.scraper.models.game.Franchise;
-import com.gamelist.game_service.scraper.models.game_engine.GameEngine;
-import com.gamelist.game_service.scraper.models.game_version.GameVersion;
-import com.gamelist.game_service.scraper.models.game_version.GameVersionFeatureValue;
-import com.gamelist.game_service.scraper.models.langauge.LanguageSupport;
-import com.gamelist.game_service.scraper.models.platform.Platform;
-import com.gamelist.game_service.scraper.models.popularity.PopularityPrimitive;
-import com.gamelist.game_service.scraper.models.release_date.ReleaseDate;
-import com.gamelist.game_service.scraper.models.website.Website;
+import com.gamelist.seeding.entity.igdb.Genre;
+import com.gamelist.seeding.entity.igdb.Keyword;
+import com.gamelist.seeding.entity.igdb.PlayerPerspective;
+import com.gamelist.seeding.entity.igdb.Theme;
+import com.gamelist.seeding.entity.igdb.age_rating.AgeRating;
+import com.gamelist.seeding.entity.igdb.artwork.Artwork;
+import com.gamelist.seeding.entity.igdb.characters.Character;
+import com.gamelist.seeding.entity.igdb.collection.Collection;
+import com.gamelist.seeding.entity.igdb.collection.CollectionMembership;
+import com.gamelist.seeding.entity.igdb.company.InvolvedCompany;
+import com.gamelist.seeding.entity.igdb.external_game.ExternalGame;
+import com.gamelist.seeding.entity.igdb.game_engine.GameEngine;
+import com.gamelist.seeding.entity.igdb.game_version.GameVersion;
+import com.gamelist.seeding.entity.igdb.game_version.GameVersionFeatureValue;
+import com.gamelist.seeding.entity.igdb.langauge.LanguageSupport;
+import com.gamelist.seeding.entity.igdb.platform.Platform;
+import com.gamelist.seeding.entity.igdb.popularity.PopularityPrimitive;
+import com.gamelist.seeding.entity.igdb.release_date.ReleaseDate;
+import com.gamelist.seeding.entity.igdb.website.Website;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.Set;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.Set;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#game
 

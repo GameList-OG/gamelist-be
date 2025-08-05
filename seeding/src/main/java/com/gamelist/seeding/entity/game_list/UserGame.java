@@ -3,14 +3,13 @@ package com.gamelist.seeding.entity.game_list;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.gamelist.seeding.entity.igdb.game.Game;
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

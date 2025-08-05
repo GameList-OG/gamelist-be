@@ -1,16 +1,14 @@
 package com.gamelist.seeding.entity.igdb.platform;
 
-import com.gamelist.game_service.scraper.models.DateFormat;
-import com.gamelist.game_service.scraper.models.platform.PlatformVersion;
-import com.gamelist.game_service.scraper.models.release_date.ReleaseDateRegion;
+import com.gamelist.seeding.entity.igdb.DateFormat;
+import com.gamelist.seeding.entity.igdb.release_date.ReleaseDateRegion;
 import jakarta.persistence.*;
+import java.time.Instant;
+import java.util.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.Instant;
-import java.util.UUID;
 
 // https://api-docs.igdb.com/#platform-version-release-date
 

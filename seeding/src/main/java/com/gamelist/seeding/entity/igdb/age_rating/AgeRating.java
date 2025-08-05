@@ -1,17 +1,15 @@
 package com.gamelist.seeding.entity.igdb.age_rating;
 
-import com.gamelist.game_service.scraper.models.age_rating.AgeRatingOrganization;
-import com.gamelist.game_service.scraper.models.game.Game;
+import com.gamelist.seeding.entity.igdb.game.Game;
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 // https://api-docs.igdb.com/#age-rating
 
