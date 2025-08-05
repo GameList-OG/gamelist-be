@@ -24,7 +24,7 @@ public class LanguageSupportType {
 
     private String name;
 
-    @OneToMany(mappedBy = "language")
+    @OneToMany(mappedBy = "languageSupportType")
     private Set<LanguageSupport> languageSupports;
 
     @Column(name = "created_at")

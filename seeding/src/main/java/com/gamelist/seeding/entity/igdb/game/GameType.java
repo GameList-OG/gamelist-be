@@ -24,7 +24,7 @@ public class GameType {
 
     private String type;
 
-    @OneToMany(mappedBy = "gameStatus")
+    @OneToMany(mappedBy = "gameType")
     private Set<Game> games;
 
     @Column(name = "created_at")

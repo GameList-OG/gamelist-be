@@ -78,7 +78,7 @@ public class Game {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<GameVideo> gameVideos;
 
-    @OneToMany(mappedBy = "mainGame", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<GameVersionFeatureValue> gameVersionFeatureValues;
 
     @OneToMany(mappedBy = "mainGame", cascade = CascadeType.ALL, orphanRemoval = true)
